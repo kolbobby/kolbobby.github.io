@@ -120,8 +120,8 @@
 			</article>
 		</div>
 
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/page.js/1.7.1/page.min.js"></script>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.14.0/axios.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/page.js/1.8.6/page.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 		<script type="text/javascript">
 			var dom = document.implementation.createHTMLDocument();
 
@@ -154,6 +154,12 @@
 
 				startMock();
 				page();
+
+				window.onpopstate = function(e) {
+					console.log('pop');
+
+					page(e.target.pathname);
+				};
 			}
 		</script>
 	</body>
