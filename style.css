@@ -1,0 +1,84 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+html, body, #app {
+	height: 100vh;
+	width: 100vw;
+
+	position: relative;
+}
+
+html { overflow: hidden; }
+
+body, #app {
+	font-family: 'Lato', sans-serif;
+
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+#app {
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+p {
+	flex: 0 1 auto;
+
+	color: #2F4F4F;
+}
+
+a {
+	flex: 0 1 auto;
+
+	color: #388E8E;
+
+	text-decoration: underline;
+}
+
+h1 {
+	font-weight: 400;
+
+	margin: 0;
+	padding: 0;
+
+	color: #388E8E;
+
+	flex: 0 1 auto;
+}
+
+h1 > small {
+	font-weight: 300;
+	font-size: 100%;
+}
+
+article {
+	margin: 1rem 0;
+	padding: 0 1rem;
+
+	width: 25vw;
+
+	border-left: 1px solid #2F4F4F;
+	border-right: 1px solid #2F4F4F;
+}
+
+article > h2 {
+	font-weight: 400;
+
+	margin: 0;
+	padding: 0;
+
+	color: #388E8E;
+}
+
+article > h2 > small {
+	font-weight: 300;
+	font-size: 100%;
+}
+
+article > p {
+	color: #2F4F4F;
+}

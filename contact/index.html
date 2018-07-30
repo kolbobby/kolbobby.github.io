@@ -15,92 +15,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" />
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" rel="stylesheet" />
 
-		<style type="text/css">
-			*, *::before, *::after {
-				box-sizing: border-box;
-			}
-
-			html, body, #app {
-				height: 100vh;
-				width: 100vw;
-
-				position: relative;
-			}
-
-			html { overflow: hidden; }
-
-			body, #app {
-				font-family: 'Lato', sans-serif;
-
-				overflow-x: hidden;
-				overflow-y: auto;
-			}
-
-			#app {
-				display: flex;
-				flex-flow: column wrap;
-				justify-content: center;
-				align-items: center;
-			}
-
-			p {
-				flex: 0 1 auto;
-
-				color: #2F4F4F;
-			}
-
-			a {
-				flex: 0 1 auto;
-
-				color: #388E8E;
-
-				text-decoration: underline;
-			}
-
-			h1 {
-				font-weight: 400;
-
-				margin: 0;
-				padding: 0;
-
-				color: #388E8E;
-
-				flex: 0 1 auto;
-			}
-
-			h1 > small {
-				font-weight: 300;
-				font-size: 100%;
-			}
-
-			article {
-				margin: 1rem 0;
-				padding: 0 1rem;
-
-				width: 25vw;
-
-				border-left: 1px solid #2F4F4F;
-				border-right: 1px solid #2F4F4F;
-			}
-
-			article > h2 {
-				font-weight: 400;
-
-				margin: 0;
-				padding: 0;
-
-				color: #388E8E;
-			}
-
-			article > h2 > small {
-				font-weight: 300;
-				font-size: 100%;
-			}
-
-			article > p {
-				color: #2F4F4F;
-			}
-		</style>
+		<link href="../style.css" rel="stylesheet" />
 	</head>
 
 	<body>
@@ -122,49 +37,6 @@
 
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/page.js/1.8.6/page.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-		<script type="text/javascript">
-			var dom = document.implementation.createHTMLDocument();
-
-			if('content' in dom.createElement('template')) {
-				var dataLoad = function(path) {
-					axios.get(path)
-						.then(function(response) {
-							var diffPage = dom.createElement('template');
-							diffPage.innerHTML = response.data;
-
-							document.getElementById('app').innerHTML = diffPage.content.getElementById('app').innerHTML;
-
-							startMock();
-						});
-				};
-
-				var startMock = function() {
-					var links = document.querySelectorAll('a');
-
-					for(var i = links.length; i--;) {
-						if(links[i].hostname === location.hostname) {
-							page(links[i].pathname, function(ctx) {
-								dataLoad(ctx.pathname);
-							});
-
-							links[i].addEventListener('click', function(e) {
-								e.preventDefault();
-
-								page(e.target.pathname);
-							}, false);
-						}
-					}
-				};
-
-				startMock();
-				page();
-
-				window.onpopstate = function(e) {
-					page.replace(e.state.path);
-
-					dataLoad(e.state.path);
-				};
-			}
-		</script>
+		<script type="text/javascript" src="./done.js"></script>
 	</body>
 </html>
