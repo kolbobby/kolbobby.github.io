@@ -155,6 +155,10 @@
 				startMock();
 				page();
 			}
+
+			window.onpopstate = function(e) {
+				page.replace(e.state.path);
+			};
 		</script>
 	</body>
 </html>
