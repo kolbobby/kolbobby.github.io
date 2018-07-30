@@ -146,11 +146,14 @@
 
 				startMock();
 				page();
-			}
 
-			window.onpopstate = function(e) {
-				page.replace(e.state.path);
-			};
+				window.onpopstate = function(e) {
+					console.log('Pop State');
+
+					startMock();
+					page();
+				};
+			}
 		</script>
 	</body>
 </html>

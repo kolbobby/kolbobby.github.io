@@ -137,7 +137,7 @@
 										var diffPage = dom.createElement('template');
 										diffPage.innerHTML = response.data;
 
-										document.getElementById('app').innerHTML = diffPage.content.getElementById('app').innerHTML
+										document.getElementById('app').innerHTML = diffPage.content.getElementById('app').innerHTML;
 
 										startMock();
 									});
@@ -154,11 +154,14 @@
 
 				startMock();
 				page();
-			}
 
-			window.onpopstate = function(e) {
-				page.replace(e.state.path);
-			};
+				window.onpopstate = function(e) {
+					console.log('Pop State');
+
+					startMock();
+					page();
+				};
+			}
 		</script>
 	</body>
 </html>
