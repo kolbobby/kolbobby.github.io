@@ -118,21 +118,25 @@
 			var dom = document.implementation.createHTMLDocument();
 
 			if('content' in dom.createElement('template')) {
+				var dataLoad = function(path) {
+					axios.get(path)
+						.then(function(response) {
+							var diffPage = dom.createElement('template');
+							diffPage.innerHTML = response.data;
+
+							document.getElementById('app').innerHTML = diffPage.content.getElementById('app').innerHTML;
+
+							startMock();
+						});
+				};
+
 				var startMock = function() {
 					var links = document.querySelectorAll('a');
 
 					for(var i = links.length; i--;) {
 						if(links[i].hostname === location.hostname) {
 							page(links[i].pathname, function(ctx) {
-								axios.get(ctx.pathname)
-									.then(function(response) {
-										var diffPage = dom.createElement('template');
-										diffPage.innerHTML = response.data;
-
-										document.getElementById('app').innerHTML = diffPage.content.getElementById('app').innerHTML;
-
-										startMock();
-									});
+								dataLoad(ctx.pathname);
 							});
 
 							links[i].addEventListener('click', function(e) {
@@ -148,9 +152,9 @@
 				page();
 
 				window.onpopstate = function(e) {
-					console.log('pop', e.target.pathname, e.state.path);
+					page.replace(e.state.path);
 
-					page(e.state.path);
+					dataLoad(e.state.path);
 				};
 			}
 		</script>
