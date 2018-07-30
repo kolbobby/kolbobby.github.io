@@ -155,6 +155,10 @@
 				startMock();
 				page();
 			}
+
+			window.onhashchange = function() {
+				page(location.pathname);
+			};
 		</script>
 	</body>
 </html>

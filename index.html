@@ -129,7 +129,7 @@
 										var diffPage = dom.createElement('template');
 										diffPage.innerHTML = response.data;
 
-										document.getElementById('app').innerHTML = diffPage.content.getElementById('app').innerHTML
+										document.getElementById('app').innerHTML = diffPage.content.getElementById('app').innerHTML;
 
 										startMock();
 									});
@@ -147,6 +147,10 @@
 				startMock();
 				page();
 			}
+
+			window.onhashchange = function() {
+				page(location.pathname);
+			};
 		</script>
 	</body>
 </html>
