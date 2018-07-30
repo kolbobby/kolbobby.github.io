@@ -156,9 +156,9 @@
 				page();
 
 				window.onpopstate = function(e) {
-					console.log('pop');
+					console.log('pop', e.target.pathname, e.state.path);
 
-					page(e.target.pathname);
+					page(e.state.path);
 				};
 			}
 		</script>
